@@ -10,11 +10,11 @@
 
 npm
 
-`npm install @JadlionHD/RTPackJS`
+`npm install rtpackjs`
 
 or using yarn
 
-`yarn add @JadlionHD/RTPackJS`
+`yarn add rtpackjs`
 
 ## Example
 

@@ -11,7 +11,9 @@
     "test": "npm run dev && node test/test.js"
   },
   "homepage": "https://github.com/JadlionHD/RTPackJS#readme",
-  "bugs": "https://github.com/JadlionHD/RTPackJS/issues",
+  "bugs": {
+    "url": "https://github.com/JadlionHD/RTPackJS/issues"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/JadlionHD/RTPackJS.git"
