@@ -19,7 +19,7 @@ or using yarn
 ## Example
 
 ```js
-const { RTTEX } = require("@JadlionHD/RTPackJS");
+const { RTTEX } = require("rtpackjs");
 const { writeFileSync } = require("node:fs");
 
 const sample = fs.readFileSync("./test/image.rttex");
