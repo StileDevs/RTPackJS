@@ -95,7 +95,7 @@ export class RTTEX {
 
     // reserved (16)
     for (let i = 0; i < 15; i++) {
-      rttex.writeUint8(0, pos);
+      rtpack.writeUint8(0, pos);
       pos += 1;
     }
 
