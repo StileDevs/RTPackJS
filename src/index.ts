@@ -1,3 +1,3 @@
-import { RTTEX } from "./structs/rttex";
+import { RTTEX } from "./structures/rttex";
 
 export { RTTEX };
