@@ -31,6 +31,14 @@ const sample = fs.readFileSync("./test/image.rttex");
   const encoded = await RTTEX.encode(decoded);
   writeFileSync("./test/new_image.rttex", encoded);
 })();
+
+(async () => {
+  const rttex = new RTTEX(sample);
+
+  console.log(rttex);
+  console.log(rttex.parseRTPACK());
+  console.log(rttex.parseRTTXTR());
+})();
 ```
 
 ## Credits

@@ -1,6 +1,7 @@
 const { RTTEX } = require("../dist/index");
 const fs = require("node:fs");
 
+// const sample = fs.readFileSync("./test/gui_shop_buybanner.rttex");
 const sample = fs.readFileSync("./test/news_banner.rttex");
 
 (async () => {
@@ -23,4 +24,12 @@ const sample = fs.readFileSync("./test/news_banner.rttex");
   fs.writeFileSync("./test/news_banner_new.png", decoded2);
 
   console.timeEnd("Decoding_PNG_TO_RTTEX_2");
+})();
+
+(async () => {
+  const rttex = new RTTEX(sample);
+
+  console.log(rttex);
+  console.log(rttex.parseRTPACK());
+  console.log(rttex.parseRTTXTR());
 })();

@@ -1,6 +1,6 @@
 {
   "name": "rtpackjs",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Converting a texture image into ProtonSDK standard texture",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
