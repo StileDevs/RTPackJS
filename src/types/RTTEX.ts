@@ -5,7 +5,7 @@ export interface RTPACK {
   compressedSize: number;
   decompressedSize: number;
   compressionType: number;
-  reserved2: Uint8Array;
+  reserved2: Int8Array;
 }
 
 export interface RTTXTR {
@@ -21,5 +21,5 @@ export interface RTTXTR {
   isCompressed: number;
   reservedFlags: number;
   mipmap: number;
-  reserved2: Uint32Array;
+  reserved2: Int32Array;
 }

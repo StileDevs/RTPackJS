@@ -40,7 +40,7 @@ export class RTTEX {
       compressedSize: this.image.readUInt32LE(8),
       decompressedSize: this.image.readUInt32LE(12),
       compressionType: this.image.readUint8(16),
-      reserved2: new Uint8Array(16)
+      reserved2: new Int8Array(16)
     };
 
     for (let i = 17; i <= 31; i++) {
@@ -72,7 +72,7 @@ export class RTTEX {
       isCompressed: img.readUint8(29),
       reservedFlags: img.readUint16LE(30),
       mipmap: img.readUint32LE(32),
-      reserved2: new Uint32Array(16)
+      reserved2: new Int32Array(16)
     };
 
     let pos = 36;
@@ -82,6 +82,12 @@ export class RTTEX {
     }
 
     return data;
+  }
+
+  public static async hash(buf: Buffer): Promise<number> {
+    let hash = 0x55555555;
+    buf.forEach((x) => (hash = (hash >>> 27) + (hash << 5) + x));
+    return hash >>> 0;
   }
 
   public static async decode(rttexImg: Buffer): Promise<Buffer> {

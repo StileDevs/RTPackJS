@@ -5,6 +5,7 @@ const fs = require("node:fs");
 const sample = fs.readFileSync("./test/news_banner.rttex");
 
 (async () => {
+  console.log("hash", await RTTEX.hash(sample));
   console.time("Decoding_PNG_TO_RTTEX");
   const decoded = await RTTEX.decode(sample);
 
