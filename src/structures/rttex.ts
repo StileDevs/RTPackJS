@@ -18,7 +18,6 @@ export class RTTEX {
   public image: Buffer;
   public type: string | undefined;
 
-  // TODO:
   constructor(image: Buffer) {
     if (!Buffer.isBuffer(image)) throw new Error("Please use buffer instead.");
     if (
@@ -114,7 +113,6 @@ export class RTTEX {
   public static async encode(img: Buffer): Promise<Buffer> {
     if (!Buffer.isBuffer(img)) throw new Error("Please use buffer instead.");
 
-    // TODO: add more format other than png, example jpg
     if (img.subarray(0, 6).toString() === "RTPACK" || img.subarray(0, 6).toString() === "RTTXTR")
       throw new TypeError("Invalid format, must be a PNG");
 
