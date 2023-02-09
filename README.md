@@ -1,4 +1,4 @@
-# RTPackJS (WIP)
+# RTPackJS
 
 > Converting a texture image into ProtonSDK standard texture.
 
@@ -20,7 +20,7 @@ or using yarn
 
 ```js
 const { RTTEX } = require("rtpackjs");
-const { writeFileSync } = require("node:fs");
+const { writeFileSync } = require("fs");
 
 const sample = fs.readFileSync("./test/image.rttex");
 

@@ -1,3 +1,10 @@
+export interface MipMap {
+  width: number;
+  height: number;
+  bufferLength: number;
+  count: number;
+}
+
 export interface RTPACK {
   type: string;
   version: number;
@@ -20,6 +27,6 @@ export interface RTTXTR {
   isAlpha: number;
   isCompressed: number;
   reservedFlags: number;
-  mipmap: number;
+  mipmap: MipMap;
   reserved2: Int32Array;
 }

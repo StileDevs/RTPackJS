@@ -63,15 +63,20 @@ export class RTTEX {
       type: img.subarray(0, 6).toString(),
       version: img.readUint8(6),
       reserved: img.readUint8(7),
-      width: img.readUint32LE(8),
-      height: img.readUint32LE(12),
-      format: img.readUint32LE(16),
-      originalWidth: img.readUint32LE(20),
-      originalHeight: img.readUint32LE(24),
+      width: img.readInt32LE(8),
+      height: img.readInt32LE(12),
+      format: img.readInt32LE(16),
+      originalWidth: img.readInt32LE(20),
+      originalHeight: img.readInt32LE(24),
       isAlpha: img.readUint8(28),
       isCompressed: img.readUint8(29),
       reservedFlags: img.readUint16LE(30),
-      mipmap: img.readUint32LE(32),
+      mipmap: {
+        width: img.readInt32LE(100),
+        height: img.readInt32LE(104),
+        bufferLength: img.readInt32LE(108),
+        count: img.readInt32LE(32)
+      },
       reserved2: new Int32Array(16)
     };
 
@@ -92,6 +97,9 @@ export class RTTEX {
 
   public static async decode(rttexImg: Buffer): Promise<Buffer> {
     let data = rttexImg;
+
+    if (!Buffer.isBuffer(data)) throw new Error("Please use buffer instead.");
+
     if (data.subarray(0, 6).toString() === "RTPACK") data = inflateSync(rttexImg.subarray(32));
 
     if (data.subarray(0, 6).toString() === "RTTXTR") {
@@ -104,6 +112,8 @@ export class RTTEX {
   }
 
   public static async encode(img: Buffer): Promise<Buffer> {
+    if (!Buffer.isBuffer(img)) throw new Error("Please use buffer instead.");
+
     // TODO: add more format other than png, example jpg
     if (img.subarray(0, 6).toString() === "RTPACK" || img.subarray(0, 6).toString() === "RTTXTR")
       throw new TypeError("Invalid format, must be a PNG");
@@ -137,7 +147,7 @@ export class RTTEX {
     rttex.writeUInt16LE(1, pos); // reservedFlags
     pos += 2;
 
-    rttex.writeInt32LE(0, pos); // mipmap
+    rttex.writeInt32LE(1, pos); // mipmapCount
     pos += 4;
 
     // reserved (17)
@@ -145,6 +155,12 @@ export class RTTEX {
       rttex.writeInt32LE(0, pos);
       pos += 4;
     }
+
+    rttex.writeInt32LE(data.height, pos); // mipmapHeight
+    pos += 4;
+    rttex.writeInt32LE(data.width, pos); // mipmapWidth
+    pos += 4;
+    rttex.writeInt32LE(data.u8.length, pos); // bufferLength
 
     const compressed = deflateSync(Buffer.concat([rttex, data.u8]));
 
