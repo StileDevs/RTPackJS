@@ -20,9 +20,9 @@ or using yarn
 
 ```js
 const { RTTEX } = require("rtpackjs");
-const { writeFileSync } = require("fs");
+const { writeFileSync, readFileSync } = require("fs");
 
-const sample = fs.readFileSync("./test/image.rttex");
+const sample = readFileSync("./test/image.rttex");
 
 (async () => {
   const decoded = await RTTEX.decode(sample);
